@@ -24,33 +24,51 @@ object List {
 
     // 3.2
     def tail[A](xs: List[A]): List[A] = xs match {
+        // case Nil => sys.error("tail of empty list")    
         case Nil => Nil
-        case Cons(x, xs) => xs
+        case Cons(_, xs) => xs
     }
 
     // 3.3
-    def setHead[A](x: A, xs: List[A]): List[A] = xs match {
+    def setHead[A](xs: List[A], x: A): List[A] = xs match {
+        // case Nil => sys.error("tail of empty list")        
         case Nil => Cons(x, Nil)
         case Cons(_, xs) => Cons(x, xs)
     }
 
     // 3.4
-    def drop[A](xs: List[A], n: Int): List[A] = n match {
-        case 0 => xs
-        case m => drop(tail(xs), m-1)
-    }
+    def drop[A](xs: List[A], n: Int): List[A] = 
+        if (n <= 0) xs
+        else xs match {
+            case Nil => Nil
+            case Cons(_, t) => drop(t, n-1)
+        }
 
     // 3.5
     def dropWhile[A](xs: List[A], f: A => Boolean): List[A] = xs match {
-        case Nil => Nil
-        case Cons(x, xss) => if (f(x)) dropWhile(xss, f) else Cons(x, dropWhile(xss, f))
+        case Cons(x, xs) if(f(x)) => dropWhile(xs, f)
+        case _ => xs
     }
 
     // 3.6
     def init[A](xs: List[A]): List[A] = xs match {
+        // case Nil => sys.error("init of empty list")
         case Nil => Nil
-        case Cons(x, Nil) => Nil
+        case Cons(_, Nil) => Nil
         case Cons(x, xs) => Cons(x, init(xs))
+    }
+
+    def init2[A](xs: List[A]): List[A] = {
+        import collection.mutable.ListBuffer
+        val buf = new ListBuffer[A]
+        @annotation.tailrec
+        def go(cur: List[A]): List[A] = cur match {
+        // case Nil => sys.error("init of empty list")
+        case Nil => Nil
+        case Cons(_,Nil) => List(buf.toList: _*)
+        case Cons(h,t) => buf += h; go(t)
+        }
+        go(xs)
     }
 }
 
@@ -79,10 +97,10 @@ println("3.2")
 
 
 // 3.3
-println(List.setHead(1.0, ex1))
-println(List.setHead(2, ex2))
-println(List.setHead("c", ex3))
-println(List.setHead(0, ex4))
+println(List.setHead(ex1, 1.0))
+println(List.setHead(ex2, 2))
+println(List.setHead(ex3, "c"))
+println(List.setHead(ex4, 0))
 println("3.3")
 
 
@@ -107,3 +125,10 @@ println(List.init(ex2))
 println(List.init(ex3))
 println(List.init(ex4))
 println("3.6")
+
+println(List.init2(ex1))
+println(List.init2(ex2))
+println(List.init2(ex3))
+println(List.init2(ex4))
+println("3.6-2")
+
