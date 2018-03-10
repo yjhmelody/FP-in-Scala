@@ -70,6 +70,55 @@ object List {
         }
         go(xs)
     }
+
+    // example 3.2
+    def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = as match {
+        case Nil => z
+        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
+
+    def sum2(xs: List[Int]) = 
+        foldRight(xs, 0)(_ + _)
+    
+    def product2(xs: List[Double]) = 
+        foldRight(xs, 1.0)(_ * _)
+
+    // 3.9
+    def length[A](xs: List[A]): Int = 
+        foldRight(xs, 0)((x: A, y: Int) => x match {
+            case Nil => y
+            case _ => y+1
+        })
+    
+    // 3.10
+    def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = as match {
+        case Nil => z
+        case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
+    }
+
+    // 3.11
+    def sum3(xs: List[Int]) = 
+        foldLeft(xs, 0)(_ + _)
+    
+    // 3.11
+    def product3(xs: List[Double]) = 
+        foldLeft(xs, 1.0)(_ * _)
+
+    // 3.12
+    def reverse[A](xs: List[A]): List[A] = 
+       foldLeft(xs, List[A]())((y: List[A], x: A) => x match {
+            case Nil => Nil
+            case _ => Cons(x, y)
+        })
+
+    // 3.13
+
+    // 3.14
+    // def append[A](xs: List[A], t: A): List[A] = 
+    //     foldLeft(xs, List[A]())((y: List[A], x: A) => x match {
+    //         case Nil => Nil
+    //         case _ => Cons(x, y)
+    //     })
 }
 
 val ex1: List[Double] = Nil
@@ -77,7 +126,6 @@ val ex2: List[Int] = Cons(1, Nil)
 val ex3: List[String] = Cons("a", Cons("b", Nil))
 var ex4 = List(1,2,3,4,5)
 
-// 3.1
 val x = ex4 match {
     case Cons(x, Cons(2, Cons(4, _))) => x
     case Nil => 42
@@ -86,40 +134,32 @@ val x = ex4 match {
     case _ => 101
 }
 println(x)
+println("3.1")
 
-
-// 3.2 
 println(List.tail(ex1))
 println(List.tail(ex2))
 println(List.tail(ex3))
 println(List.tail(ex4))
 println("3.2")
 
-
-// 3.3
 println(List.setHead(ex1, 1.0))
 println(List.setHead(ex2, 2))
 println(List.setHead(ex3, "c"))
 println(List.setHead(ex4, 0))
 println("3.3")
 
-
-// 3.4
 println(List.drop(ex1, 1))
 println(List.drop(ex2, 2))
 println(List.drop(ex3, 3))
 println(List.drop(ex4, 4))
 println("3.4")
 
-// 3.5
 println(List.dropWhile(ex1, (x: Double) => x == 0))
 println(List.dropWhile(ex2, (x: Int) => x == 1))
 println(List.dropWhile(ex3, (x: String) => x == "b"))
 println(List.dropWhile(ex4, (x: Int) => x == 3))
 println("3.5")
 
-
-// 3.6
 println(List.init(ex1))
 println(List.init(ex2))
 println(List.init(ex3))
@@ -132,3 +172,22 @@ println(List.init2(ex3))
 println(List.init2(ex4))
 println("3.6-2")
 
+println(List.foldRight(List(1,2,3,4), Nil:List[Int])(Cons(_, _)))
+println("3.8")
+
+println(List.length(ex1))
+println(List.length(ex2))
+println(List.length(ex3))
+println(List.length(ex4))
+println("3.9")
+
+println(List.foldLeft(List(1,2,3,4), 0)(_ + _))
+println("3.10")
+
+println(List.sum3(ex4))
+println(List.product3(ex1))
+println(List.product3(List[Double](1,2,3,4)))
+println("3.11")
+
+println(List.reverse(ex4))
+println("3.12")
