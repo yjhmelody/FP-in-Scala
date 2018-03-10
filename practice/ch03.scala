@@ -106,13 +106,11 @@ object List {
        foldLeft(xs, List[A]())((acc, h) => Cons(h, acc))
 
     // 3.13
+    // 
 
     // 3.14
-    // def append[A](xs: List[A], t: A): List[A] = 
-    //     foldLeft(xs, List[A]())((y: List[A], x: A) => x match {
-    //         case Nil => Nil
-    //         case _ => Cons(x, y)
-    //     })
+    def appendViaFoldRight[A](l: List[A], r: List[A]): List[A] =
+        foldRight(l, r)(Cons(_, _))
 }
 
 val ex1: List[Double] = Nil
@@ -174,7 +172,6 @@ println("3.8")
 // Cons(1, Cons(2, Cons(3, foldRight(Nil, Nil:List[Int])(Cons(_,_)))))
 // Cons(1, Cons(2, Cons(3, Nil)))
 
-
 println(List.length(ex1))
 println(List.length(ex2))
 println(List.length(ex3))
@@ -191,3 +188,7 @@ println("3.11")
 
 println(List.reverse(ex4))
 println("3.12")
+
+
+println(List.append(ex4, List(6, 7)))
+println("3.14")
