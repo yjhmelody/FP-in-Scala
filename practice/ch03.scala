@@ -85,31 +85,25 @@ object List {
 
     // 3.9
     def length[A](xs: List[A]): Int = 
-        foldRight(xs, 0)((x: A, y: Int) => x match {
-            case Nil => y
-            case _ => y+1
-        })
+        foldRight(xs, 0)((_, acc) => acc + 1)
     
     // 3.10
+    @annotation.tailrec
     def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = as match {
         case Nil => z
         case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
     }
 
     // 3.11
-    def sum3(xs: List[Int]) = 
-        foldLeft(xs, 0)(_ + _)
+    def sum3(xs: List[Int]) = foldLeft(xs, 0)(_ + _)
     
-    // 3.11
-    def product3(xs: List[Double]) = 
-        foldLeft(xs, 1.0)(_ * _)
+    def product3(xs: List[Double]) = foldLeft(xs, 1.0)(_ * _)
+
+    def length2[A](xs: List[A]): Int = foldLeft(xs, 0)((acc, _) => acc + 1)
 
     // 3.12
     def reverse[A](xs: List[A]): List[A] = 
-       foldLeft(xs, List[A]())((y: List[A], x: A) => x match {
-            case Nil => Nil
-            case _ => Cons(x, y)
-        })
+       foldLeft(xs, List[A]())((acc, h) => Cons(h, acc))
 
     // 3.13
 
@@ -174,6 +168,12 @@ println("3.6-2")
 
 println(List.foldRight(List(1,2,3,4), Nil:List[Int])(Cons(_, _)))
 println("3.8")
+// foldRight(Cons(1, Cons(2, Cons(3, Nil))), Nil:List[Int])(Cons(_,_))
+// Cons(1, foldRight(Cons(2, Cons(3, Nil)), Nil:List[Int])(Cons(_,_)))
+// Cons(1, Cons(2, foldRight(Cons(3, Nil), Nil:List[Int])(Cons(_,_))))
+// Cons(1, Cons(2, Cons(3, foldRight(Nil, Nil:List[Int])(Cons(_,_)))))
+// Cons(1, Cons(2, Cons(3, Nil)))
+
 
 println(List.length(ex1))
 println(List.length(ex2))
