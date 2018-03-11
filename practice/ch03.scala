@@ -111,6 +111,80 @@ object List {
     // 3.14
     def appendViaFoldRight[A](l: List[A], r: List[A]): List[A] =
         foldRight(l, r)(Cons(_, _))
+
+    // 3.15
+    // def concat
+
+    // 3.16
+    // @annotation.tailrec
+    def plusOne(xs: List[Int]): List[Int] = xs match {
+        case Nil => Nil
+        case Cons(x, xs) => Cons(x+1, plusOne(xs))
+    }
+
+    // 3.17
+    def doubleToString(xs: List[Double]): List[String] = xs match {
+        case Nil => Nil
+        case Cons(x, xs) => Cons(x.toString(), doubleToString(xs))
+    }
+
+    // 3.18
+    def map[A, B](xs: List[A])(f: A => B): List[B] = xs match {
+        case Nil => Nil
+        case Cons(x, xs) => Cons(f(x), map(xs)(f))
+    }
+
+    // 3.19
+    def filter[A](xs: List[A])(f: A => Boolean): List[A] = {
+        def loop(xs: List[A], prev: A): List[A] = {
+            xs match {
+                case Nil => Nil
+                case Cons(x, xs) if(f(x)) => Cons(x, loop(xs, x))
+                case Cons(x, xs) => loop(xs, x)
+            }
+        }
+
+        xs match {
+            case Nil => Nil
+            case Cons(x, xs) => loop(Cons(x, xs), x)
+        }
+    }
+
+    // 3.20
+    def flatMap[A, B](xs: List[A])(f: A => List[B]): List[B] = xs match {
+        case Nil => Nil
+        case Cons(x, xs) => append(f(x), flatMap(xs)(f))
+    }
+
+    // 3.21
+    // def filter2[A](xs: List[A])(f: A => Boolean): List[A] = {
+    //     def loop(xs: List[A], prev: List[A]): List[A] = {
+    //         xs match {
+    //             case Nil => Nil
+    //             case Cons(x, xs) => if(f(x)) => Cons(x, loop(xs, x))
+    //             case Cons(x, xs) => loop(xs, x)
+    //         }
+    //     }
+
+    //     xs match {
+    //         case Nil => Nil
+    //         case Cons(x, xs) => loop(Cons(x, xs), x)
+    //     }
+    // }
+
+    // 3.22
+    def plus[A](xs: List[A], ys: List[A])(f: (A, A) => A): List[A] = (xs, ys) match {
+        case (Nil, _) => Nil
+        case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), plus(xs, ys)(f))
+        case (_, _) => Nil
+    }
+
+    // 3.23
+    def zipWith[A, B, C](xs: List[A], ys: List[B])(f: (A, B) => C): List[C] = (xs, ys) match {
+        case (Nil, _) => Nil
+        case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
+        case (_, _) => Nil
+    }
 }
 
 val ex1: List[Double] = Nil
@@ -189,6 +263,26 @@ println("3.11")
 println(List.reverse(ex4))
 println("3.12")
 
-
 println(List.append(ex4, List(6, 7)))
 println("3.14")
+
+
+println(List.plusOne(ex4))
+println("3.16")
+
+println(List.doubleToString(List[Double](1.1,2.2,3.3,4.4)))
+println("3.17")
+
+println(List.map(ex4)(_ * 2))
+println("3.18")
+
+println(List.filter(ex4)(x => x != 4))
+println("3.19")
+
+println(List.flatMap(List(1,2,3))(i => List(i, i)))
+println("3.20")
+
+println(List.plus(ex4, ex4)(_ + _))
+println("3.22")
+
+println(List.zipWith(ex4, ex4)(_ * _))
