@@ -113,14 +113,18 @@ object List {
         foldRight(l, r)(Cons(_, _))
 
     // 3.15
-    // def concat
+    def concat[A](xs: List[List[A]]): List[A] = 
+        foldRight(xs, Nil:List[A])(append)
 
     // 3.16
-    // @annotation.tailrec
     def plusOne(xs: List[Int]): List[Int] = xs match {
         case Nil => Nil
         case Cons(x, xs) => Cons(x+1, plusOne(xs))
     }
+
+    // 3.16-2
+    def add1(xs: List[Int]): List[Int] = 
+        foldRight(xs, Nil:List[Int])((h, t) => Cons(h+1, t))
 
     // 3.17
     def doubleToString(xs: List[Double]): List[String] = xs match {
@@ -128,7 +132,18 @@ object List {
         case Cons(x, xs) => Cons(x.toString(), doubleToString(xs))
     }
 
+    // 3.17-2
+    def doubleToString2(xs: List[Double]): List[String] =
+        foldRight(xs, Nil:List[String])((h, t) => Cons(h.toString, t))
+
     // 3.18
+
+//     A natural solution is using foldRight, but our implementation of foldRight is not stack-safe. We
+// can use foldRightViaFoldLeft to avoid the stack overflow (variation 1), but more commonly, with
+// our current implementation of List, map will just be implemented using local mutation (variation
+// 2). Again, note that the mutation isn’t observable outside the function, since we’re only mutating a
+// buffer that we’ve allocated.
+
     def map[A, B](xs: List[A])(f: A => B): List[B] = xs match {
         case Nil => Nil
         case Cons(x, xs) => Cons(f(x), map(xs)(f))
@@ -266,11 +281,15 @@ println("3.12")
 println(List.append(ex4, List(6, 7)))
 println("3.14")
 
+println(List.concat(List[List[Int]](List(1,2,3), List(4,5,6))))
+println("3.15")
 
 println(List.plusOne(ex4))
+println(List.add1(ex4))
 println("3.16")
 
 println(List.doubleToString(List[Double](1.1,2.2,3.3,4.4)))
+println(List.doubleToString2(List[Double](2.2, 10.00)))
 println("3.17")
 
 println(List.map(ex4)(_ * 2))
