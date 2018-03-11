@@ -106,7 +106,14 @@ object List {
        foldLeft(xs, List[A]())((acc, h) => Cons(h, acc))
 
     // 3.13
-    // 
+    def foldRightViaFoldLeft[A,B](l: List[A], z: B)(f: (A,B) => B): B =
+        foldLeft(reverse(l), z)((b,a) => f(a,b))
+
+    def foldRightViaFoldLeft_1[A,B](l: List[A], z: B)(f: (A,B) => B): B =
+        foldLeft(l, (b:B) => b)((g,a) => b => g(f(a,b)))(z)
+
+    def foldLeftViaFoldRight[A,B](l: List[A], z: B)(f: (B,A) => B): B =
+        foldRight(l, (b:B) => b)((a,g) => b => g(f(b,a)))(z)
 
     // 3.14
     def appendViaFoldRight[A](l: List[A], r: List[A]): List[A] =
@@ -136,7 +143,7 @@ object List {
     def doubleToString2(xs: List[Double]): List[String] =
         foldRight(xs, Nil:List[String])((h, t) => Cons(h.toString, t))
 
-    // 3.18
+    // 3.18*
 
 //     A natural solution is using foldRight, but our implementation of foldRight is not stack-safe. We
 // can use foldRightViaFoldLeft to avoid the stack overflow (variation 1), but more commonly, with
@@ -164,41 +171,65 @@ object List {
             case Cons(x, xs) => loop(Cons(x, xs), x)
         }
     }
+    
+    def filter2[A](xs: List[A])(f: A => Boolean): List[A] =
+        foldRight(xs, Nil:List[A])((h, t) => if(f(h)) Cons(h, t) else t)
 
+    def filter3[A](xs: List[A])(f: A => Boolean): List[A] = {
+         val buf = new collection.mutable.ListBuffer[A]
+         def loop(xs: List[A]): Unit = xs match {
+             case Nil => ()
+             case Cons(h, t) => if (f(h)) buf += h; loop(t)
+         }
+
+         loop(xs)
+         List(buf.toList: _*)
+         // converting from the standard Scala list to the list we've defined here
+    }
     // 3.20
+    // This could also be implemented directly using `foldRight`.
+    // mine
     def flatMap[A, B](xs: List[A])(f: A => List[B]): List[B] = xs match {
         case Nil => Nil
         case Cons(x, xs) => append(f(x), flatMap(xs)(f))
     }
 
-    // 3.21
-    // def filter2[A](xs: List[A])(f: A => Boolean): List[A] = {
-    //     def loop(xs: List[A], prev: List[A]): List[A] = {
-    //         xs match {
-    //             case Nil => Nil
-    //             case Cons(x, xs) => if(f(x)) => Cons(x, loop(xs, x))
-    //             case Cons(x, xs) => loop(xs, x)
-    //         }
-    //     }
+    def flatMap2[A, B](xs: List[A])(f: A => List[B]): List[B] = 
+        concat(map(xs)(f))
+    
+    // hard
+    // def flatMap3[A, B](xs: List[A])(f: A => List[B]): List[B] =
+        // foldRight(xs, Nil:List[B])((x, xs) => Cons(f(x), xs))
 
-    //     xs match {
-    //         case Nil => Nil
-    //         case Cons(x, xs) => loop(Cons(x, xs), x)
-    //     }
-    // }
+    // 3.21
+    // Regrad inner List as a container. If true return List(x) else Nil, and Nil will be droped by flatMap.
+    def filterViaFlatMap[A](xs: List[A])(f: A => Boolean): List[A] = 
+        flatMap(xs)(x => if(f(x)) List(x) else Nil)
 
     // 3.22
+//     To match on multiple values, we can put the values into a pair and match on the pair, as shown next,
+// and the same syntax extends to matching on N values (see sidebar “Pairs and tuples in Scala” for more
+// about pair and tuple objects). You can also (somewhat less conveniently, but a bit more efficiently)
+// nest pattern matches: on the right hand side of the =>, simply begin another match expression. The
+// inner match will have access to all the variables introduced in the outer match.
+    // mine
     def plus[A](xs: List[A], ys: List[A])(f: (A, A) => A): List[A] = (xs, ys) match {
         case (Nil, _) => Nil
+        case (_, Nil) => Nil
         case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), plus(xs, ys)(f))
-        case (_, _) => Nil
+    }
+
+    def addPairwise(a: List[Int], b: List[Int]): List[Int] = (a,b) match {
+        case (Nil, _) => Nil
+        case (_, Nil) => Nil
+        case (Cons(h1,t1), Cons(h2,t2)) => Cons(h1+h2, addPairwise(t1,t2))
     }
 
     // 3.23
     def zipWith[A, B, C](xs: List[A], ys: List[B])(f: (A, B) => C): List[C] = (xs, ys) match {
         case (Nil, _) => Nil
+        case (_, Nil) => Nil        
         case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
-        case (_, _) => Nil
     }
 }
 
