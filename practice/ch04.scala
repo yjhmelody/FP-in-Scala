@@ -65,6 +65,8 @@ object Option {
     // 4.4
     def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
         case Nil => Some(Nil)
+        // xx is a A and flatMap returns Option[List[A]]. The map(f: List[A] => List[A]): List[A].
+        // So xx::_ means A::List[A].
         case x::xs => x flatMap (xx => sequence(xs) map (xx::_))
     }
 }
