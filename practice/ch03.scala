@@ -2,6 +2,7 @@ sealed trait List[+A]
 case object Nil extends List[Nothing]
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
+// List
 object List {
     def sum(ints: List[Int]): Int = ints match {
         case Nil => 0
@@ -231,7 +232,63 @@ object List {
         case (_, Nil) => Nil        
         case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
     }
+
+    // 3.24
+    def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = (sup, sub) match {
+        case (Nil, Nil) => true
+        case (_, Nil) => true
+        case (Nil, _) => false
+        case (Cons(x, sup), Cons(y, sub)) => if(x == y) hasSubsequence(sup, sub) else false
+    }
 }
+
+
+// Tree
+sealed trait Tree[+A]
+case class Leaf[A](value: A) extends Tree[A]
+case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
+
+object Tree {
+    // 3.25
+    def size[A](tree: Tree[A]): Int = tree match {
+            case Leaf(_) => 1        
+            case Branch(left, right) => 1 + size(left) + size(right)
+    }
+
+    // 3.26
+    def maximun(tree: Tree[Int]): Int = {
+        def loop(tree: Tree[Int], maxVal: Int): Int = tree match {
+            case Leaf(x) => x max maxVal
+            case Branch(left, right) => loop(left, maxVal) max loop(right, maxVal)
+        }
+
+        def findFirst(tree: Tree[Int]): Int = tree match {
+            case Leaf(x) => x
+            case Branch(left, _) => findFirst(left)
+        }
+
+        loop(tree, findFirst(tree))
+    }
+
+    // 3.27
+    def depth[A](tree: Tree[A]): Int = tree match {
+        case Leaf(_) => 1
+        case Branch(left, right) => (depth(left)+1) max (depth(right)+1)
+    }
+
+    // 3.28
+    def map[A, B](tree: Tree[A])(f: A => B): Tree[B] = tree match {
+        case Leaf(x) => Leaf(f(x))
+        case Branch(left, right) => Branch(map(left)(f), map(right)(f))
+    }
+
+    // 3.29
+    def fold[A, B](tree: Tree[A], z: B)(f: (B, A) => B): B = tree match {
+        case Branch(left, right) => fold(Branch(left, right), z)(f)
+        case Leaf(x) => f(z, x)
+    }
+}
+
 
 val ex1: List[Double] = Nil
 val ex2: List[Int] = Cons(1, Nil)
@@ -336,3 +393,32 @@ println(List.plus(ex4, ex4)(_ + _))
 println("3.22")
 
 println(List.zipWith(ex4, ex4)(_ * _))
+println("3.23")
+
+println(List.hasSubsequence(List(1,2,3), List(1,2)))
+println("3.24")
+
+val tree = Branch(
+    Branch(
+        Leaf(1),
+        Leaf(2),
+    ),
+    Branch(
+        Leaf(3),
+        Leaf(4)
+    )
+)
+println(Tree.size(tree))
+println("3.25")
+
+println(Tree.maximun(tree))
+println("3.26")
+
+println(Tree.depth(tree))
+println("3.27")
+
+println(Tree.map(tree)(_ * 2))
+println("3.28")
+
+println(Tree.fold(tree, 0)(_ + _))
+println("3.29")
