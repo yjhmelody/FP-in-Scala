@@ -40,6 +40,20 @@ trait Option[+A] {
         flatMap(a => if(f(a)) Some(a) else None)
 }
 
+object Option {
+    def mean(xs: Seq[Double]): Option[Double] =
+    if(xs.isEmpty) None
+    else Some(xs.sum / xs.length)
+
+    // 4.2
+    def variance(xs: Seq[Double]): Option[Double] = 
+        mean(xs) flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
+        
+    def lift[A, B](f: A => B): Option[A] => Option[B] = _ map f
+}
+
+
+
 val xs1: Option[Int] = Some(1)
 val xs2: Option[Int] = None
 val xs3: Option[Double] = Some(2.0)
@@ -59,4 +73,12 @@ println(xs2.orElse2(Some(233)))
 println(xs1.filter(_ == 2))
 println(xs2.filter2(_ == 2))
 println(xs3.filter(_ == 2))
+
+println(Option.lift((x:Int) => x * 2)(xs1))
+println(Option.lift((x:Double) => x * 2)(xs3))
+
+println(Option.mean(Seq[Double](1,2,3,4)))
+println(Option.mean(Seq[Double]()))
+
+println(Option.variance(Seq[Double](1,2,3,4)))
 println("4.1")
