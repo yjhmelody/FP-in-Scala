@@ -38,6 +38,8 @@ trait Option[+A] {
 
     def filter2(f: A => Boolean): Option[A] =
         flatMap(a => if(f(a)) Some(a) else None)
+
+
 }
 
 object Option {
@@ -50,7 +52,21 @@ object Option {
         mean(xs) flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
         
     def lift[A, B](f: A => B): Option[A] => Option[B] = _ map f
+
+    def Try[A](a: => A): Option[A] = 
+        try Some(a)
+        catch {case e: Exception => None}
+    
+    // 4.3
+    def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] =
+        // aa is A which is in a, bb is B which is in b.
+        a flatMap (aa => b map (bb => f(aa, bb)))
 }
+
+
+// def parseInsuranceRateQuote(arg: String, num: String): Option[Double] =
+    // val optAge: Option[Int] = Try(age.toInt)
+    // val optTickets: Option[Int] = Try(num.toInt)
 
 
 
@@ -80,5 +96,12 @@ println(Option.lift((x:Double) => x * 2)(xs3))
 println(Option.mean(Seq[Double](1,2,3,4)))
 println(Option.mean(Seq[Double]()))
 
-println(Option.variance(Seq[Double](1,2,3,4)))
+println(Option.Try(2))
+println(Option.Try(None))
 println("4.1")
+
+println(Option.variance(Seq[Double](1,2,3,4)))
+println("4.2")
+
+println(Option.map2(xs1, xs3)((x, y) => x + y))
+println("4.3")
