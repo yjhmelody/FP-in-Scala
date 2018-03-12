@@ -61,13 +61,13 @@ object Option {
     def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] =
         // aa is A which is in a, bb is B which is in b.
         a flatMap (aa => b map (bb => f(aa, bb)))
+    
+    // 4.4
+    def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
+        case Nil => Some(Nil)
+        case x::xs => x flatMap (xx => sequence(xs) map (xx::_))
+    }
 }
-
-
-// def parseInsuranceRateQuote(arg: String, num: String): Option[Double] =
-    // val optAge: Option[Int] = Try(age.toInt)
-    // val optTickets: Option[Int] = Try(num.toInt)
-
 
 
 val xs1: Option[Int] = Some(1)
@@ -105,3 +105,7 @@ println("4.2")
 
 println(Option.map2(xs1, xs3)((x, y) => x + y))
 println("4.3")
+
+println(Option.sequence(List[Option[Int]](Some(1), Some(2), Some(3))))
+println(Option.sequence(List[Option[Int]](Some(1), Some(2), None)))
+println("4.4")
