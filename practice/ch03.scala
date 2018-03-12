@@ -256,24 +256,15 @@ object Tree {
     }
 
     // 3.26
-    def maximun(tree: Tree[Int]): Int = {
-        def loop(tree: Tree[Int], maxVal: Int): Int = tree match {
-            case Leaf(x) => x max maxVal
-            case Branch(left, right) => loop(left, maxVal) max loop(right, maxVal)
-        }
-
-        def findFirst(tree: Tree[Int]): Int = tree match {
-            case Leaf(x) => x
-            case Branch(left, _) => findFirst(left)
-        }
-
-        loop(tree, findFirst(tree))
+    def maximun(tree: Tree[Int]): Int = tree match {
+        case Leaf(x) => x
+        case Branch(left, right) => maximun(left) max maximun(right)
     }
 
     // 3.27
     def depth[A](tree: Tree[A]): Int = tree match {
-        case Leaf(_) => 1
-        case Branch(left, right) => (depth(left)+1) max (depth(right)+1)
+        case Leaf(_) => 0
+        case Branch(left, right) => 1 + (depth(left)) max (depth(right))
     }
 
     // 3.28
@@ -283,10 +274,41 @@ object Tree {
     }
 
     // 3.29
-    def fold[A, B](tree: Tree[A], z: B)(f: (B, A) => B): B = tree match {
-        case Branch(left, right) => fold(Branch(left, right), z)(f)
-        case Leaf(x) => f(z, x)
+    def fold[A, B](tree: Tree[A])(f: A => B)(g: (B, B) => B): B = tree match {
+        case Leaf(x) => f(x)
+        case Branch(left, right) => g(fold(left)(f)(g), fold(right)(f)(g))
     }
+    
+    def mapViaFold[A, B](tree: Tree[A])(f: A => B): Tree[B] =
+        // need to write down tpye
+        fold(tree)(a => Leaf(f(a)): Tree[B])(Branch(_, _))
+
+    def sizeViaFold[A](tree: Tree[A]): Int =
+        fold(tree)(_ => 1)(1 + _ + _)
+    
+    def maximunViaFold(tree: Tree[Int]): Int =
+        fold(tree)(x => x)(_ max _)
+
+    def depthViaFold[A](tree: Tree[A]): Int =
+        fold(tree)(x => 0)((x, y) => 1 + (x max y))
+    
+//     Note the type annotation required on the expression Leaf(f(a)). Without this annotation, we get
+// an error like this:
+// type mismatch;
+// found : fpinscala.datastructures.Branch[B]
+// required: fpinscala.datastructures.Leaf[B]
+// fold(t)(a => Leaf(f(a)))(Branch(_,_))
+// ^
+// This error is an unfortunate consequence of Scala using subtyping to encode algebraic data types.
+// Without the annotation, the result type of the fold gets inferred as Leaf[B] and it is then expected
+// that the second argument to fold will return Leaf[B], which it doesn’t (it returns Branch[B]). Really,
+// we’d prefer Scala to infer Tree[B] as the result type in both cases. When working with algebraic data
+// types in Scala, it’s somewhat common to define helper functions that simply call the corresponding
+// data constructors but give the less specific result type:
+
+    def leaf[A](a: A): Tree[A] = Leaf(a)
+
+    def branch[A](l: Tree[A], r: Tree[A]): Tree[A] = Branch(l, r)
 }
 
 
@@ -420,5 +442,10 @@ println("3.27")
 println(Tree.map(tree)(_ * 2))
 println("3.28")
 
-println(Tree.fold(tree, 0)(_ + _))
+// do map same as 3.28
+println(Tree.fold(tree)(x => Leaf(x * 2):Tree[Int])(Branch(_, _)))
+println(Tree.mapViaFold(tree)(_ * 2))
+println(Tree.sizeViaFold(tree))
+println(Tree.depthViaFold(tree))
+println(Tree.maximunViaFold(tree))
 println("3.29")
