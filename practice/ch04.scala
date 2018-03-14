@@ -59,7 +59,7 @@ object Option {
     
     // 4.3
     def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] =
-        // aa is A which is in a, bb is B which is in b.
+        // aa is A which is in Option a, bb is B which is in  Option b.
         a flatMap (aa => b map (bb => f(aa, bb)))
     
     // 4.4
@@ -75,7 +75,22 @@ object Option {
     // type error (try it!). This is an unfortunate consequence of Scala using subtyping to encode algebraic
     // data types.
     def sequence2[A](a: List[Option[A]]): Option[List[A]] =
-        a.foldRight[Option[List[A]]](Some(Nil))((x, y) => map2(x, y)(_ :: _))    
+        a.foldRight[Option[List[A]]](Some(Nil))((x, y) => map2(x, y)(_ :: _))
+
+
+    // 4.5
+    def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = a match {
+        case Nil => Some(Nil)
+        // map2 returns Option[_ :: _] which is Option[List[B]], because f(h) is Option[B].
+        case h::t => map2(f(h), traverse(t)(f))(_ :: _)
+    }
+
+    // It can also be implemented using foldRight and map2. The type annotation on foldRight is needed
+    // here; otherwise Scala wrongly infers the result type of the fold as Some[Nil.type] and reports a
+    // type error (try it!). This is an unfortunate consequence of Scala using subtyping to encode algebraic
+    // data types.
+    def traverse2[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] =
+        a.foldRight[Option[List[B]]](Some(Nil))((x, y) => map2(x, y)(_ :: _))
 }
 
 
