@@ -60,7 +60,15 @@ object Option {
     // 4.3
     def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] =
         // aa is A which is in Option a, bb is B which is in  Option b.
+
+        // This is the callback hell.
         a flatMap (aa => b map (bb => f(aa, bb)))
+    
+    def map2_2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] =
+        for {
+            aa <- a
+            bb <- b
+        } yield f(aa, bb)
     
     // 4.4
     def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
@@ -92,6 +100,8 @@ object Option {
     // Let f returns the input.
     def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] =
         traverse(a)(x => x)
+
+
 }
 
 
@@ -140,3 +150,67 @@ println("4.4")
 println(Option.traverse(List[Option[Int]](Some(1), Some(2), Some(3)))(Option.lift(_ * 2)))
 println(Option.traverse2(List[Option[Int]](Some(1), Some(2), None))(Option.lift(_ * 2)))
 println("4.5")
+
+
+
+case class Left[+E](value: E) extends Either[E, Nothing]
+case class Right[+A](value: A) extends Either[Nothing, A]
+
+trait Either[+E, +A] {
+    // 4.6
+    def map[B](f: A => B): Either[E, B] = this match {
+        case Left(e) => Left(e)
+        case Right(a) => Right(f(a))
+    }
+
+    def flatMap[EE >: E, B](f: A => Either[EE, B]): Either[EE, B] = this match {
+        case Left(e) => Left(e)
+        case Right(a) => f(a)
+    }
+
+    def orElse[EE >: E, B >: A](b: => Either[EE, B]): Either[EE, B] = this match {
+        case Left(_) => b
+        case Right(a) => Right(a)
+    }
+
+    def map2[EE >: E, B, C](b: Either[EE, B])(f: (A, B) => C): Either[EE, C] =
+        for {
+            a <- this
+            b1 <- b
+        } yield f(a, b1)
+}
+
+object Either {
+    def mean(xs: IndexedSeq[Double]): Either[String, Double] =
+        if(xs.isEmpty)
+            Left("mean of empty list")
+        else 
+            Right(xs.sum / xs.length)
+    
+    def safeDiv(x: Int, y: Int): Either[Exception, Int] =
+        try Right(x / y)
+        catch {case e: Exception => Left(e)}
+    
+    def Try[A](a: => A): Either[Exception, A] =
+        try Right(a)
+        catch{case e: Exception => Left(e)}
+}
+
+
+println(Left("error").map("error" + _))
+println(Right(233).map(2 * _))
+
+println(Left("error").flatMap(x => Left("error2")))
+println(Right(233).flatMap(x => Right(x * 2)))
+println(Right(233).flatMap(x => Left("error")))
+
+println(Left("error").orElse(Right(233)))
+println(Right(233).orElse(Left("error")))
+println(Left(233).orElse(Left("error")))
+
+println(Left(1).map2(Left(2))((x, y) => y))
+println(Right(233).map2(Right(233))((x, y) => x + y))
+println(Right(233).map2(Left("error"))((x, y) => y))
+println(Left("error").map2(Right(233))((x, y) => y))
+
+println("4.6")
