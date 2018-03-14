@@ -85,12 +85,13 @@ object Option {
         case h::t => map2(f(h), traverse(t)(f))(_ :: _)
     }
 
-    // It can also be implemented using foldRight and map2. The type annotation on foldRight is needed
-    // here; otherwise Scala wrongly infers the result type of the fold as Some[Nil.type] and reports a
-    // type error (try it!). This is an unfortunate consequence of Scala using subtyping to encode algebraic
-    // data types.
+    // This is so similar to sequence2, it just has one more function f.
     def traverse2[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] =
-        a.foldRight[Option[List[B]]](Some(Nil))((x, y) => map2(x, y)(_ :: _))
+        a.foldRight[Option[List[B]]](Some(Nil))((h, t) => map2(f(h), t)(_ :: _))
+    
+    // Let f returns the input.
+    def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] =
+        traverse(a)(x => x)
 }
 
 
@@ -135,3 +136,7 @@ println(Option.sequence(List[Option[Int]](Some(1), Some(2), None)))
 println(Option.sequence2(List[Option[Int]](Some(1), Some(2), Some(3))))
 println(Option.sequence2(List[Option[Int]](Some(1), Some(2), None)))
 println("4.4")
+
+println(Option.traverse(List[Option[Int]](Some(1), Some(2), Some(3)))(Option.lift(_ * 2)))
+println(Option.traverse2(List[Option[Int]](Some(1), Some(2), None))(Option.lift(_ * 2)))
+println("4.5")
