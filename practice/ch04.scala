@@ -194,6 +194,18 @@ object Either {
     def Try[A](a: => A): Either[Exception, A] =
         try Right(a)
         catch{case e: Exception => Left(e)}
+
+    // 4.7
+    def traverse[E, A, B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] = es match {
+        case Nil => Right(Nil)
+        case h::t => (f(h) map2 traverse(t)(f))(_ :: _)
+    }
+
+    def traverse2[E, A, B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] =
+        es.foldRight[Either[E, List[B]]](Right(Nil))((a, b) => f(a).map2(b)(_ :: _))
+
+    def sequence[E, A](es: List[Either[E, A]]): Either[E, List[A]] = 
+        traverse(es)(x => x)
 }
 
 
@@ -214,3 +226,9 @@ println(Right(233).map2(Left("error"))((x, y) => y))
 println(Left("error").map2(Right(233))((x, y) => y))
 
 println("4.6")
+
+println(Either.sequence(List[Either[String, Int]](Right(1), Right(2), Left("error"))))
+println(Either.sequence(List[Either[String, Int]](Right(1), Right(2))))
+println(Either.traverse(List[Int](1, 2, 3))(a => Right(a*2)))
+println(Either.traverse(List[Int](1, 2, 3))(a => if(a !=3) Right(a*2) else Left("error")))
+println("4.7")
