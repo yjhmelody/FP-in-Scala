@@ -3,6 +3,14 @@ case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
 
 object Stream {
+  def main(args: Array[String]): Unit = {
+    val s1 = Stream(1, 2, 3, 4)
+    println(s1.toList)
+    println(s1.take(2).toList)
+    println(s1.drop(2).toList)
+    println(s1.takeWhile(_ < 4).toList2)
+  }
+
     def cons[A](hd: => A, tl: => Stream[A]): Stream[A] = {
         lazy val head = hd
         lazy val tail = tl
@@ -59,8 +67,3 @@ trait Stream[+A] {
 }
 
 
-val s1 = Stream(1, 2, 3, 4)
-println(s1.toList)
-println(s1.take(2).toList)
-println(s1.drop(2).toList)
-println(s1.takeWhile(_ < 4).toList2)
