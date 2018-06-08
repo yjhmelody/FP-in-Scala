@@ -1,11 +1,5 @@
 *.class
 *.log
-project/target/config-classes/$5a333ae7a735f45d8be9.cache
-project/target/config-classes/$6d3cdb5ef401611fb66d.cache
-project/target/config-classes/$7685d3dd40b8403b12cb.cache
-project/target/config-classes/$fac149b2655ded36ca2d.cache
-project/target/scala-2.12/
-project/target/streams/
-target/.history
-target/scala-2.12/resolution-cache/
-target/streams/
+
+project/*
+target/*
