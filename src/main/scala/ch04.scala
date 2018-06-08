@@ -1,45 +1,46 @@
-package com.yjhmelody.fp
+package com.yjhmelody.fp.ch4
 
 
 case class MySome[+A](get: A) extends MyOption[A]
+
 case object MyNone extends MyOption[Nothing]
 
 trait MyOption[+A] {
-    // 4.1
-    def map[B](f: A => B): MyOption[B] = this match {
-        case MyNone => MyNone
-        case MySome(x) => MySome(f(x))
-    }
+  // 4.1
+  def map[B](f: A => B): MyOption[B] = this match {
+    case MyNone => MyNone
+    case MySome(x) => MySome(f(x))
+  }
 
-    def getOrElse[B >: A](default: => B): B = this match {
-        case MyNone => default
-        case MySome(x) => x
-    }
+  def getOrElse[B >: A](default: => B): B = this match {
+    case MyNone => default
+    case MySome(x) => x
+  }
 
-    def flatMap[B](f: A => MyOption[B]): MyOption[B] = this match {
-        case MyNone => MyNone
-        case MySome(x) => f(x)
-    }
+  def flatMap[B](f: A => MyOption[B]): MyOption[B] = this match {
+    case MyNone => MyNone
+    case MySome(x) => f(x)
+  }
 
-    def flatMap2[B](f: A => MyOption[B]): MyOption[B] =
-        map(f) getOrElse MyNone
+  def flatMap2[B](f: A => MyOption[B]): MyOption[B] =
+    map(f) getOrElse MyNone
 
 
-    def orElse[B >: A](ob: MyOption[B]): MyOption[B] = this match {
-        case MyNone => ob
-        case _ => this
-    }
+  def orElse[B >: A](ob: MyOption[B]): MyOption[B] = this match {
+    case MyNone => ob
+    case _ => this
+  }
 
-    def orElse2[B >: A](ob: MyOption[B]): MyOption[B] =
-        this map (MySome(_)) getOrElse ob
+  def orElse2[B >: A](ob: MyOption[B]): MyOption[B] =
+    this map (MySome(_)) getOrElse ob
 
-    def filter(f: A => Boolean): MyOption[A] = this match {
-        case MySome(x) if f(x) => this
-        case _ => MyNone
-    }
+  def filter(f: A => Boolean): MyOption[A] = this match {
+    case MySome(x) if f(x) => this
+    case _ => MyNone
+  }
 
-    def filter2(f: A => Boolean): MyOption[A] =
-        flatMap(a => if(f(a)) MySome(a) else MyNone)
+  def filter2(f: A => Boolean): MyOption[A] =
+    flatMap(a => if (f(a)) MySome(a) else MyNone)
 
 }
 
@@ -65,17 +66,17 @@ object MyOption {
     println(xs2.filter2(_ == 2))
     println(xs3.filter(_ == 2))
 
-    println(MyOption.lift((x:Int) => x * 2)(xs1))
-    println(MyOption.lift((x:Double) => x * 2)(xs3))
+    println(MyOption.lift((x: Int) => x * 2)(xs1))
+    println(MyOption.lift((x: Double) => x * 2)(xs3))
 
-    println(MyOption.mean(Seq[Double](1,2,3,4)))
+    println(MyOption.mean(Seq[Double](1, 2, 3, 4)))
     println(MyOption.mean(Seq[Double]()))
 
     println(MyOption.Try(2))
     println(MyOption.Try(MyNone))
     println("4.1")
 
-    println(MyOption.variance(Seq[Double](1,2,3,4)))
+    println(MyOption.variance(Seq[Double](1, 2, 3, 4)))
     println("4.2")
 
     println(MyOption.map2(xs1, xs3)((x, y) => x + y))
@@ -91,94 +92,97 @@ object MyOption {
     println(MyOption.traverse2(List[MyOption[Int]](MySome(1), MySome(2), MyNone))(MyOption.lift(_ * 2)))
     println("4.5")
   }
-    def mean(xs: Seq[Double]): MyOption[Double] =
-    if(xs.isEmpty) MyNone
+
+  def mean(xs: Seq[Double]): MyOption[Double] =
+    if (xs.isEmpty) MyNone
     else MySome(xs.sum / xs.length)
 
-    // 4.2
-    def variance(xs: Seq[Double]): MyOption[Double] =
-        mean(xs) flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
+  // 4.2
+  def variance(xs: Seq[Double]): MyOption[Double] =
+    mean(xs) flatMap (m => mean(xs.map(x => math.pow(x - m, 2))))
 
-    def lift[A, B](f: A => B): MyOption[A] => MyOption[B] = _ map f
+  def lift[A, B](f: A => B): MyOption[A] => MyOption[B] = _ map f
 
-    def Try[A](a: => A): MyOption[A] =
-        try MySome(a)
-        catch {case e: Exception => MyNone}
-
-    // 4.3
-    def map2[A, B, C](a: MyOption[A], b: MyOption[B])(f: (A, B) => C): MyOption[C] =
-        // aa is A which is in Option a, bb is B which is in  Option b.
-
-        // This is the callback hell.
-        a flatMap (aa => b map (bb => f(aa, bb)))
-
-    def map2_2[A, B, C](a: MyOption[A], b: MyOption[B])(f: (A, B) => C): MyOption[C] =
-        for {
-            aa <- a
-            bb <- b
-        } yield f(aa, bb)
-
-    // 4.4
-    def sequence[A](a: List[MyOption[A]]): MyOption[List[A]] = a match {
-        case Nil => MySome(Nil)
-        // xx is a A and flatMap returns Option[List[A]]. The map(f: List[A] => List[A]): List[A].
-        // So xx::_ means A::List[A].
-        case x::xs => x flatMap (xx => sequence(xs) map (xx::_))
+  def Try[A](a: => A): MyOption[A] =
+    try MySome(a)
+    catch {
+      case e: Exception => MyNone
     }
 
-    // It can also be implemented using foldRight and map2. The type annotation on foldRight is needed
-    // here; otherwise Scala wrongly infers the result type of the fold as Some[Nil.type] and reports a
-    // type error (try it!). This is an unfortunate consequence of Scala using subtyping to encode algebraic
-    // data types.
-    def sequence2[A](a: List[MyOption[A]]): MyOption[List[A]] =
-        a.foldRight[MyOption[List[A]]](MySome(Nil))((x, y) => map2(x, y)(_ :: _))
+  // 4.3
+  def map2[A, B, C](a: MyOption[A], b: MyOption[B])(f: (A, B) => C): MyOption[C] =
+  // aa is A which is in Option a, bb is B which is in  Option b.
+
+  // This is the callback hell.
+    a flatMap (aa => b map (bb => f(aa, bb)))
+
+  def map2_2[A, B, C](a: MyOption[A], b: MyOption[B])(f: (A, B) => C): MyOption[C] =
+    for {
+      aa <- a
+      bb <- b
+    } yield f(aa, bb)
+
+  // 4.4
+  def sequence[A](a: List[MyOption[A]]): MyOption[List[A]] = a match {
+    case Nil => MySome(Nil)
+    // xx is a A and flatMap returns Option[List[A]]. The map(f: List[A] => List[A]): List[A].
+    // So xx::_ means A::List[A].
+    case x :: xs => x flatMap (xx => sequence(xs) map (xx :: _))
+  }
+
+  // It can also be implemented using foldRight and map2. The type annotation on foldRight is needed
+  // here; otherwise Scala wrongly infers the result type of the fold as Some[Nil.type] and reports a
+  // type error (try it!). This is an unfortunate consequence of Scala using subtyping to encode algebraic
+  // data types.
+  def sequence2[A](a: List[MyOption[A]]): MyOption[List[A]] =
+    a.foldRight[MyOption[List[A]]](MySome(Nil))((x, y) => map2(x, y)(_ :: _))
 
 
-    // 4.5
-    def traverse[A, B](a: List[A])(f: A => MyOption[B]): MyOption[List[B]] = a match {
-        case Nil => MySome(Nil)
-        // map2 returns Option[_ :: _] which is Option[List[B]], because f(h) is Option[B].
-        case h::t => map2(f(h), traverse(t)(f))(_ :: _)
-    }
+  // 4.5
+  def traverse[A, B](a: List[A])(f: A => MyOption[B]): MyOption[List[B]] = a match {
+    case Nil => MySome(Nil)
+    // map2 returns Option[_ :: _] which is Option[List[B]], because f(h) is Option[B].
+    case h :: t => map2(f(h), traverse(t)(f))(_ :: _)
+  }
 
-    // This is so similar to sequence2, it just has one more function f.
-    def traverse2[A, B](a: List[A])(f: A => MyOption[B]): MyOption[List[B]] =
-        a.foldRight[MyOption[List[B]]](MySome(Nil))((h, t) => map2(f(h), t)(_ :: _))
+  // This is so similar to sequence2, it just has one more function f.
+  def traverse2[A, B](a: List[A])(f: A => MyOption[B]): MyOption[List[B]] =
+    a.foldRight[MyOption[List[B]]](MySome(Nil))((h, t) => map2(f(h), t)(_ :: _))
 
-    // Let f returns the input.
-    def sequenceViaTraverse[A](a: List[MyOption[A]]): MyOption[List[A]] =
-        traverse(a)(x => x)
+  // Let f returns the input.
+  def sequenceViaTraverse[A](a: List[MyOption[A]]): MyOption[List[A]] =
+    traverse(a)(x => x)
 
 
 }
 
 
-
 case class MyLeft[+E](value: E) extends MyEither[E, Nothing]
+
 case class MyRight[+A](value: A) extends MyEither[Nothing, A]
 
 trait MyEither[+E, +A] {
-    // 4.6
-    def map[B](f: A => B): MyEither[E, B] = this match {
-        case MyLeft(e) => MyLeft(e)
-        case MyRight(a) => MyRight(f(a))
-    }
+  // 4.6
+  def map[B](f: A => B): MyEither[E, B] = this match {
+    case MyLeft(e) => MyLeft(e)
+    case MyRight(a) => MyRight(f(a))
+  }
 
-    def flatMap[EE >: E, B](f: A => MyEither[EE, B]): MyEither[EE, B] = this match {
-        case MyLeft(e) => MyLeft(e)
-        case MyRight(a) => f(a)
-    }
+  def flatMap[EE >: E, B](f: A => MyEither[EE, B]): MyEither[EE, B] = this match {
+    case MyLeft(e) => MyLeft(e)
+    case MyRight(a) => f(a)
+  }
 
-    def orElse[EE >: E, B >: A](b: => MyEither[EE, B]): MyEither[EE, B] = this match {
-        case MyLeft(_) => b
-        case MyRight(a) => MyRight(a)
-    }
+  def orElse[EE >: E, B >: A](b: => MyEither[EE, B]): MyEither[EE, B] = this match {
+    case MyLeft(_) => b
+    case MyRight(a) => MyRight(a)
+  }
 
-    def map2[EE >: E, B, C](b: MyEither[EE, B])(f: (A, B) => C): MyEither[EE, C] =
-        for {
-            a <- this
-            b1 <- b
-        } yield f(a, b1)
+  def map2[EE >: E, B, C](b: MyEither[EE, B])(f: (A, B) => C): MyEither[EE, C] =
+    for {
+      a <- this
+      b1 <- b
+    } yield f(a, b1)
 }
 
 object MyEither {
@@ -205,8 +209,8 @@ object MyEither {
 
     println(MyEither.sequence(List[MyEither[String, Int]](MyRight(1), MyRight(2), MyLeft("error"))))
     println(MyEither.sequence(List[MyEither[String, Int]](MyRight(1), MyRight(2))))
-    println(MyEither.traverse(List[Int](1, 2, 3))(a => MyRight(a*2)))
-    println(MyEither.traverse(List[Int](1, 2, 3))(a => if(a !=3) MyRight(a*2) else MyLeft("error")))
+    println(MyEither.traverse(List[Int](1, 2, 3))(a => MyRight(a * 2)))
+    println(MyEither.traverse(List[Int](1, 2, 3))(a => if (a != 3) MyRight(a * 2) else MyLeft("error")))
     println("4.7")
 
     // 4.8
@@ -227,29 +231,34 @@ object MyEither {
     // It’s also possible to use Either[List[E],_] directly to accumulate errors, using different implementations
     // of helper functions like map2 and sequence.
   }
-    def mean(xs: IndexedSeq[Double]): MyEither[String, Double] =
-        if(xs.isEmpty)
-            MyLeft("mean of empty list")
-        else
-            MyRight(xs.sum / xs.length)
 
-    def safeDiv(x: Int, y: Int): MyEither[Exception, Int] =
-        try MyRight(x / y)
-        catch {case e: Exception => MyLeft(e)}
+  def mean(xs: IndexedSeq[Double]): MyEither[String, Double] =
+    if (xs.isEmpty)
+      MyLeft("mean of empty list")
+    else
+      MyRight(xs.sum / xs.length)
 
-    def Try[A](a: => A): MyEither[Exception, A] =
-        try MyRight(a)
-        catch{case e: Exception => MyLeft(e)}
-
-    // 4.7
-    def traverse[E, A, B](es: List[A])(f: A => MyEither[E, B]): MyEither[E, List[B]] = es match {
-        case Nil => MyRight(Nil)
-        case h::t => (f(h) map2 traverse(t)(f))(_ :: _)
+  def safeDiv(x: Int, y: Int): MyEither[Exception, Int] =
+    try MyRight(x / y)
+    catch {
+      case e: Exception => MyLeft(e)
     }
 
-    def traverse2[E, A, B](es: List[A])(f: A => MyEither[E, B]): MyEither[E, List[B]] =
-        es.foldRight[MyEither[E, List[B]]](MyRight(Nil))((a, b) => f(a).map2(b)(_ :: _))
+  def Try[A](a: => A): MyEither[Exception, A] =
+    try MyRight(a)
+    catch {
+      case e: Exception => MyLeft(e)
+    }
 
-    def sequence[E, A](es: List[MyEither[E, A]]): MyEither[E, List[A]] =
-        traverse(es)(x => x)
+  // 4.7
+  def traverse[E, A, B](es: List[A])(f: A => MyEither[E, B]): MyEither[E, List[B]] = es match {
+    case Nil => MyRight(Nil)
+    case h :: t => (f(h) map2 traverse(t)(f)) (_ :: _)
+  }
+
+  def traverse2[E, A, B](es: List[A])(f: A => MyEither[E, B]): MyEither[E, List[B]] =
+    es.foldRight[MyEither[E, List[B]]](MyRight(Nil))((a, b) => f(a).map2(b)(_ :: _))
+
+  def sequence[E, A](es: List[MyEither[E, A]]): MyEither[E, List[A]] =
+    traverse(es)(x => x)
 }
