@@ -182,6 +182,7 @@ object MyList {
   }
 
   // 3.4
+  @annotation.tailrec
   def drop[A](xs: MyList[A], n: Int): MyList[A] =
     if (n <= 0) xs
     else xs match {
@@ -190,8 +191,9 @@ object MyList {
     }
 
   // 3.5
+  @annotation.tailrec
   def dropWhile[A](xs: MyList[A], f: A => Boolean): MyList[A] = xs match {
-    case Cons(x, xs) if (f(x)) => dropWhile(xs, f)
+    case Cons(x, xs) if f(x) => dropWhile(xs, f)
     case _ => xs
   }
 
@@ -308,7 +310,7 @@ object MyList {
     def loop(xs: MyList[A], prev: A): MyList[A] = {
       xs match {
         case MyNil => MyNil
-        case Cons(x, xs) if (f(x)) => Cons(x, loop(xs, x))
+        case Cons(x, xs) if f(x) => Cons(x, loop(xs, x))
         case Cons(x, xs) => loop(xs, x)
       }
     }
@@ -414,7 +416,7 @@ object Tree {
   // 3.27
   def depth[A](tree: Tree[A]): Int = tree match {
     case Leaf(_) => 0
-    case Branch(left, right) => 1 + (depth(left)) max (depth(right))
+    case Branch(left, right) => 1 + depth(left) max depth(right)
   }
 
   // 3.28

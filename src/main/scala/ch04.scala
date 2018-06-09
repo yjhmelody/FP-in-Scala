@@ -6,6 +6,9 @@ case class MySome[+A](get: A) extends MyOption[A]
 case object MyNone extends MyOption[Nothing]
 
 trait MyOption[+A] {
+  def flatMap2[B](f: A => MyOption[B]): MyOption[B] =
+    map(f) getOrElse MyNone
+
   // 4.1
   def map[B](f: A => B): MyOption[B] = this match {
     case MyNone => MyNone
@@ -16,15 +19,6 @@ trait MyOption[+A] {
     case MyNone => default
     case MySome(x) => x
   }
-
-  def flatMap[B](f: A => MyOption[B]): MyOption[B] = this match {
-    case MyNone => MyNone
-    case MySome(x) => f(x)
-  }
-
-  def flatMap2[B](f: A => MyOption[B]): MyOption[B] =
-    map(f) getOrElse MyNone
-
 
   def orElse[B >: A](ob: MyOption[B]): MyOption[B] = this match {
     case MyNone => ob
@@ -41,6 +35,11 @@ trait MyOption[+A] {
 
   def filter2(f: A => Boolean): MyOption[A] =
     flatMap(a => if (f(a)) MySome(a) else MyNone)
+
+  def flatMap[B](f: A => MyOption[B]): MyOption[B] = this match {
+    case MyNone => MyNone
+    case MySome(x) => f(x)
+  }
 
 }
 
