@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c4fe3afc-1ad1-47e9-b331-195dc041b9fe" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ch03.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ch03.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,16 +26,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="Parsers.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/Parsers.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <state relative-caret-position="380">
+              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ch9Suite.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/Ch9Suite.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>this</find>
+      <find>println</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>assert</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -49,13 +68,16 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/build.sbt" />
-        <option value="$PROJECT_DIR$/src/main/scala/ch03.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/ch02.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/ch05.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/ch04.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Par.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/Ch2Suite.scala" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/scala/ch03.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Ch3Suite.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Ch9Suite.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Parsers.scala" />
       </list>
     </option>
   </component>
@@ -69,9 +91,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-80" />
+    <option name="x" value="-77" />
     <option name="width" value="965" />
-    <option name="height" value="1040" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -92,6 +114,32 @@
               <item name="FP-in-Scala" type="b2602c69:ProjectViewProjectNode" />
               <item name="FP-in-Scala" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FP-in-Scala" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FP-in-Scala" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FP-in-Scala" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FP-in-Scala" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FP-in-Scala" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FP-in-Scala" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FP-in-Scala" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FP-in-Scala" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FP-in-Scala" type="b2602c69:ProjectViewProjectNode" />
@@ -125,7 +173,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="ScalaTest.Ch2Suite.fib">
+  <component name="RunManager" selected="ScalaTest.Ch3Suite.dropWhile 3.5">
     <configuration name="Stream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.yjhmelody.fp.ch5.Stream" />
       <module name="fp-in-scala" />
@@ -171,6 +219,21 @@
       <setting name="path" value="com.yjhmelody.fp.ch2.Ch2Suite" />
       <setting name="testName" value="fib" />
     </configuration>
+    <configuration name="Ch3Suite.dropWhile 3.5" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <module name="fp-in-scala" />
+      <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="showProgressMessages" value="true" />
+      <setting name="useSbt" value="false" />
+      <setting name="useUiWithSbt" value="false" />
+      <envs />
+      <setting name="testKind" value="Test name" />
+      <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
+      <setting name="testName" value="dropWhile 3.5" />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -196,9 +259,11 @@
     <list>
       <item itemvalue="Application.Stream" />
       <item itemvalue="ScalaTest.Ch2Suite.fib" />
+      <item itemvalue="ScalaTest.Ch3Suite.dropWhile 3.5" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="ScalaTest.Ch3Suite.dropWhile 3.5" />
         <item itemvalue="ScalaTest.Ch2Suite.fib" />
         <item itemvalue="Application.Stream" />
       </list>
@@ -257,6 +322,8 @@
       <workItem from="1528475705556" duration="3362000" />
       <workItem from="1528532823575" duration="31000" />
       <workItem from="1528555058314" duration="1812000" />
+      <workItem from="1528643069010" duration="5000" />
+      <workItem from="1528809654121" duration="6798000" />
     </task>
     <task id="LOCAL-00001" summary="update readme">
       <created>1528451317775</created>
@@ -301,9 +368,12 @@
     <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 56m 33s.xml">
       <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
+    <history-entry file="Ch3Suite_dropWhile_3_5 - 2018.06.12 at 21h 35m 06s.xml">
+      <configuration name="Ch3Suite.dropWhile 3.5" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5814000" />
+    <option name="totallyTimeSpent" value="12617000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -319,25 +389,25 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5033512" side_tool="true" weight="0.32956153" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36916548" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4966488" weight="0.32956153" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36916548" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.24463807" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.17426273" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="7" weight="0.32956153" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32956153" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="1" sideWeight="0.5021097" side_tool="true" weight="0.24463807" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" sideWeight="0.5021097" side_tool="true" weight="0.24463807" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32956153" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
@@ -381,6 +451,20 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/ch05.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -521,13 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ch03.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/ch02.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -535,38 +612,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ch05.scala">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ch04.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Par.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        <state relative-caret-position="95">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/Ch2Suite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        <state relative-caret-position="95">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#30#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch3Suite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        <state relative-caret-position="-1605">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <folding>
+            <element signature="e#30#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ch03.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4703">
+          <caret line="318" column="25" selection-start-line="318" selection-start-column="25" selection-end-line="318" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ch04.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="242" column="20" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ch05.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Par.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch9Suite.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Parsers.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
         </state>
       </provider>
     </entry>
