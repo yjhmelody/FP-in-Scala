@@ -15,9 +15,9 @@ class Ch2Suite extends FunSuite {
   }
 
   test("isSorted") {
-    val as = Array(3, 1, 5)
-    assert(isSorted(as, (prev: Int, cur: Int) => prev < cur) == Array(1,3,5))
-    assert(isSorted(as, (prev: Int, cur: Int) => prev > cur) == Array(5,3,1))
+    val as = Array(1, 3, 5)
+    assert(isSorted(as, (prev: Int, cur: Int) => prev < cur) == true)
+    assert(isSorted(as, (prev: Int, cur: Int) => prev > cur) == false)
   }
 
   test("curry and uncurry") {

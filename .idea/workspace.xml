@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4fe3afc-1ad1-47e9-b331-195dc041b9fe" name="Default" comment="">
+    <list default="true" id="c4fe3afc-1ad1-47e9-b331-195dc041b9fe" name="Default" comment="update some test">
+      <change afterPath="$PROJECT_DIR$/src/test/scala/Ch3Suite.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ch03.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ch03.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/Ch2Suite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/Ch2Suite.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,20 +27,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Parsers.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Parsers.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Parsers.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="361">
+              <caret line="19" column="66" lean-forward="true" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ch9Suite.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Ch3Suite.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/Ch3Suite.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+              <folding>
+                <element signature="e#30#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ch02.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/ch02.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ch2Suite.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/Ch2Suite.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+              <folding>
+                <element signature="e#30#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ch03.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/ch03.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ch9Suite.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/scala/Ch9Suite.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+            <state relative-caret-position="152">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#30#59#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,12 +118,12 @@
         <option value="$PROJECT_DIR$/src/main/scala/ch05.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/ch04.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Par.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/Ch2Suite.scala" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/scala/ch03.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/Ch3Suite.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/Ch9Suite.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Parsers.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Ch3Suite.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Ch2Suite.scala" />
       </list>
     </option>
   </component>
@@ -91,9 +137,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-77" />
+    <option name="x" value="-78" />
     <option name="width" value="965" />
-    <option name="height" value="1038" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -173,18 +219,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="ScalaTest.Ch3Suite.dropWhile 3.5">
-    <configuration name="Stream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.yjhmelody.fp.ch5.Stream" />
-      <module name="fp-in-scala" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.yjhmelody.fp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
+  <component name="RunManager" selected="ScalaTest.Ch2Suite.fib">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -204,6 +239,20 @@
       </option>
       <patterns />
     </configuration>
+    <configuration name="Ch2Suite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <module name="fp-in-scala" />
+      <setting name="path" value="com.yjhmelody.fp.ch2.Ch2Suite" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="showProgressMessages" value="true" />
+      <setting name="useSbt" value="false" />
+      <setting name="useUiWithSbt" value="false" />
+      <envs />
+      <setting name="testKind" value="Class" />
+      <setting name="path" value="com.yjhmelody.fp.ch2.Ch2Suite" />
+    </configuration>
     <configuration name="Ch2Suite.fib" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <module name="fp-in-scala" />
       <setting name="path" value="com.yjhmelody.fp.ch2.Ch2Suite" />
@@ -219,7 +268,21 @@
       <setting name="path" value="com.yjhmelody.fp.ch2.Ch2Suite" />
       <setting name="testName" value="fib" />
     </configuration>
-    <configuration name="Ch3Suite.dropWhile 3.5" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+    <configuration name="Ch3Suite" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <module name="fp-in-scala" />
+      <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="showProgressMessages" value="true" />
+      <setting name="useSbt" value="false" />
+      <setting name="useUiWithSbt" value="false" />
+      <envs />
+      <setting name="testKind" value="Class" />
+      <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
+    </configuration>
+    <configuration name="Ch3Suite.flatMap 3.20" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
       <module name="fp-in-scala" />
       <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
       <setting name="vmparams" value="" />
@@ -232,7 +295,22 @@
       <envs />
       <setting name="testKind" value="Test name" />
       <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
-      <setting name="testName" value="dropWhile 3.5" />
+      <setting name="testName" value="flatMap 3.20" />
+    </configuration>
+    <configuration name="Ch3Suite.setHead 3.3" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true">
+      <module name="fp-in-scala" />
+      <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="showProgressMessages" value="true" />
+      <setting name="useSbt" value="false" />
+      <setting name="useUiWithSbt" value="false" />
+      <envs />
+      <setting name="testKind" value="Test name" />
+      <setting name="path" value="com.yjhmelody.fp.ch3.Ch3Suite" />
+      <setting name="testName" value="setHead 3.3" />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -257,15 +335,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Stream" />
+      <item itemvalue="ScalaTest.Ch3Suite.flatMap 3.20" />
+      <item itemvalue="ScalaTest.Ch3Suite" />
+      <item itemvalue="ScalaTest.Ch3Suite.setHead 3.3" />
+      <item itemvalue="ScalaTest.Ch2Suite" />
       <item itemvalue="ScalaTest.Ch2Suite.fib" />
-      <item itemvalue="ScalaTest.Ch3Suite.dropWhile 3.5" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.Ch3Suite.dropWhile 3.5" />
         <item itemvalue="ScalaTest.Ch2Suite.fib" />
-        <item itemvalue="Application.Stream" />
+        <item itemvalue="ScalaTest.Ch2Suite" />
+        <item itemvalue="ScalaTest.Ch3Suite" />
+        <item itemvalue="ScalaTest.Ch3Suite.setHead 3.3" />
+        <item itemvalue="ScalaTest.Ch3Suite.flatMap 3.20" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +405,7 @@
       <workItem from="1528532823575" duration="31000" />
       <workItem from="1528555058314" duration="1812000" />
       <workItem from="1528643069010" duration="5000" />
-      <workItem from="1528809654121" duration="6798000" />
+      <workItem from="1528809654121" duration="10124000" />
     </task>
     <task id="LOCAL-00001" summary="update readme">
       <created>1528451317775</created>
@@ -346,34 +428,57 @@
       <option name="project" value="LOCAL" />
       <updated>1528556676412</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add ch9">
+      <created>1528817631989</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1528817631992</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update and fix some tests">
+      <created>1528822921191</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1528822921191</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 48m 46s.xml">
-      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite_length_3_9 - 2018.06.13 at 00h 54m 48s.xml">
+      <configuration name="Ch3Suite.length 3.9" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 49m 29s.xml">
-      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite_flatMap_3_20 - 2018.06.13 at 00h 55m 11s.xml">
+      <configuration name="Ch3Suite.flatMap 3.20" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 49m 59s.xml">
-      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite_flatMap_3_20 - 2018.06.13 at 00h 55m 24s.xml">
+      <configuration name="Ch3Suite.flatMap 3.20" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 51m 46s.xml">
-      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite - 2018.06.13 at 00h 55m 57s.xml">
+      <configuration name="Ch3Suite" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 54m 48s.xml">
-      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite_setHead_3_3 - 2018.06.13 at 00h 57m 04s.xml">
+      <configuration name="Ch3Suite.setHead 3.3" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Ch2Suite_fib - 2018.06.09 at 22h 56m 33s.xml">
-      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite - 2018.06.13 at 00h 58m 14s.xml">
+      <configuration name="Ch3Suite" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Ch3Suite_dropWhile_3_5 - 2018.06.12 at 21h 35m 06s.xml">
-      <configuration name="Ch3Suite.dropWhile 3.5" configurationId="ScalaTestRunConfiguration" />
+    <history-entry file="Ch3Suite - 2018.06.13 at 00h 59m 30s.xml">
+      <configuration name="Ch3Suite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="Ch3Suite - 2018.06.13 at 00h 59m 41s.xml">
+      <configuration name="Ch3Suite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="Ch2Suite - 2018.06.13 at 01h 00m 39s.xml">
+      <configuration name="Ch2Suite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="Ch2Suite_fib - 2018.06.13 at 01h 01m 39s.xml">
+      <configuration name="Ch2Suite.fib" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12617000" />
+    <option name="totallyTimeSpent" value="15943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -389,11 +494,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5033512" side_tool="true" weight="0.32956153" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4966488" weight="0.32956153" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.4966488" visible="true" weight="0.32956153" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.36916548" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.17426273" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.17426273" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="7" weight="0.32956153" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" />
@@ -447,7 +552,10 @@
     <MESSAGE value="update readme" />
     <MESSAGE value="fix some bugs" />
     <MESSAGE value="use scalaTest: try to practice testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="use scalaTest: try to practice testing" />
+    <MESSAGE value="add ch9" />
+    <MESSAGE value="update some test" />
+    <MESSAGE value="update and fix some tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="update and fix some tests" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -605,44 +713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ch02.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch2Suite.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-          <folding>
-            <element signature="e#30#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch3Suite.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1605">
-          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
-          <folding>
-            <element signature="e#30#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ch03.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4703">
-          <caret line="318" column="25" selection-start-line="318" selection-start-column="25" selection-end-line="318" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -667,17 +741,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch9Suite.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Parsers.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        <state relative-caret-position="361">
+          <caret line="19" column="66" lean-forward="true" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Parsers.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ch03.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        <state relative-caret-position="131">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch3Suite.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <folding>
+            <element signature="e#30#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ch02.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch2Suite.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding>
+            <element signature="e#30#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Ch9Suite.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#30#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
