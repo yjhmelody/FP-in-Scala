@@ -123,40 +123,46 @@ class Ch3Suite extends FunSuite {
     assert(MyList.plus(ex4, ex4)(_ + _) == MyList(2, 4, 6, 8, 10))
   }
 
-  //
-  //  assert(MyList.zipWith(ex4, ex4)(_ * _))
-  //  assert("3.23")
-  //
-  //  assert(MyList.hasSubsequence(MyList(1, 2, 3), MyList(1, 2)))
-  //  assert("3.24")
-  //
-  //  val tree = Branch(
-  //    Branch(
-  //      Leaf(1),
-  //      Leaf(2),
-  //    ),
-  //    Branch(
-  //      Leaf(3),
-  //      Leaf(4)
-  //    )
-  //  )
-  //  assert(Tree.size(tree))
-  //  assert("3.25")
-  //
-  //  assert(Tree.maximun(tree))
-  //  assert("3.26")
-  //
-  //  assert(Tree.depth(tree))
-  //  assert("3.27")
-  //
-  //  assert(Tree.map(tree)(_ * 2))
-  //  assert("3.28")
-  //
-  //  // do map same as 3.28
-  //  assert(Tree.fold(tree)(x => Leaf(x * 2): Tree[Int])(Branch(_, _)))
-  //  assert(Tree.mapViaFold(tree)(_ * 2))
-  //  assert(Tree.sizeViaFold(tree))
-  //  assert(Tree.depthViaFold(tree))
-  //  assert(Tree.maximunViaFold(tree))
-  //  assert("3.29")
+  test("3.23") {
+    assert(MyList.zipWith(ex4, ex4)(_ * _) == MyList(1, 4, 9, 16, 25))
+  }
+
+  test("3.24") {
+    assert(MyList.hasSubsequence(MyList(1, 2, 3), MyList(1, 2)))
+  }
+
+  test("3.25-3.29") {
+    val tree = Branch(
+      Branch(
+        Leaf(1),
+        Leaf(2),
+      ),
+      Branch(
+        Leaf(3),
+        Leaf(4)
+      )
+    )
+    val res = Branch(
+      Branch(
+        Leaf(2),
+        Leaf(4)
+      ),
+      Branch(
+        Leaf(6),
+        Leaf(8)
+      )
+    )
+    assert(Tree.size(tree) == 7)
+    assert(Tree.maximun(tree) == 4)
+    assert(Tree.depth(tree) == 2)
+    assert(Tree.map(tree)(_ * 2) == res)
+
+    assert(Tree.fold(tree)(x => Leaf(x * 2): Tree[Int])(Branch(_, _)) == res)
+
+    assert(Tree.sizeViaFold(tree) == 7)
+    assert(Tree.maximunViaFold(tree) == 4)
+    assert(Tree.depthViaFold(tree) == 2)
+    assert(Tree.mapViaFold(tree)(_ * 2) == res)
+
+  }
 }
