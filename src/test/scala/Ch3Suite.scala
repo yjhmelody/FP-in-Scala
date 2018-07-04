@@ -1,6 +1,5 @@
 package com.yjhmelody.fp.ch3
 
-import com.yjhmelody.fp.ch3._
 import org.scalatest.FunSuite
 
 class Ch3Suite extends FunSuite {
@@ -163,6 +162,5 @@ class Ch3Suite extends FunSuite {
     assert(Tree.maximunViaFold(tree) == 4)
     assert(Tree.depthViaFold(tree) == 2)
     assert(Tree.mapViaFold(tree)(_ * 2) == res)
-
   }
 }

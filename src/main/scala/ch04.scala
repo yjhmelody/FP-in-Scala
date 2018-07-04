@@ -151,8 +151,6 @@ object MyOption {
   // Let f returns the input.
   def sequenceViaTraverse[A](a: List[MyOption[A]]): MyOption[List[A]] =
     traverse(a)(x => x)
-
-
 }
 
 
