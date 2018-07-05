@@ -6,8 +6,6 @@ object Parsers {
   }
 }
 
-
-
 trait Parsers[ParseError, Parser[+_]] {
   self =>
   def run[A](p: Parser[A])(input: String): Either[ParseError, A]

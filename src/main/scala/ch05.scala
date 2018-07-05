@@ -19,6 +19,14 @@ object Stream {
 }
 
 sealed trait Stream[+A] {
+
+  import Stream._
+
+  def headOption(): Option[A] = this match {
+    case Empty => None
+    case Cons(h, t) => Some(h())
+  }
+
   // 5.1
   def toList(): List[A] = this match {
     case Empty => Nil
@@ -40,7 +48,7 @@ sealed trait Stream[+A] {
     if (n <= 0) Empty
     else this match {
       case Empty => Empty
-      case Cons(h, t) => Stream.cons(h(), t().take(n - 1))
+      case Cons(h, t) => cons(h(), t().take(n - 1))
     }
   }
 
@@ -55,9 +63,42 @@ sealed trait Stream[+A] {
 
   // 5.3
   def takeWhile(f: A => Boolean): Stream[A] = this match {
-    case Cons(h, t) if f(h()) => Stream.cons(h(), t().takeWhile(f))
+    case Cons(h, t) if f(h()) => cons(h(), t().takeWhile(f))
     case _ => Empty
   }
+
+  def exists(p: A => Boolean): Boolean = this match {
+    case Cons(h, t) => p(h()) || t().exists(p)
+    case _ => false
+  }
+
+  def foldRight[B](z: => B)(f: (A, => B) => B): B = this match {
+    case Cons(h, t) => f(h(), t().foldRight(z)(f))
+    case _ => z
+  }
+
+  def exists2(p: A => Boolean): Boolean =
+    foldRight(false)((a, acc) => p(a) || acc)
+
+  // 5.4
+  def forAll(p: A => Boolean): Boolean = this match {
+    case Cons(h, t) => p(h()) && t().forAll(p)
+    case _ => true
+  }
+
+  def forAll2(p: A => Boolean): Boolean =
+    foldRight(true)((a, acc) => p(a) && acc)
+
+  // 5.5
+  def takeWhile2(f: A => Boolean): Stream[A] =
+    foldRight(empty[A])((a, acc) => if (f(a)) cons(a, acc) else empty[A])
+
+  // 5.6
+  def headOption2(): Option[A] =
+    foldRight(None: Option[A])((h, _) => Some(h))
+
+  // 5.7
+  def map[B](f: A => B): Stream[B] =
+    foldRight(empty[B])((a, acc) => cons(f(a), acc))
+
 }
-
-
