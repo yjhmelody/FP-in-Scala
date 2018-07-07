@@ -18,7 +18,6 @@ object Stream {
 }
 
 sealed trait Stream[+A] {
-
   import Stream._
 
   def headOption(): Option[A] = this match {

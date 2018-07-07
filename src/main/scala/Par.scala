@@ -1,16 +1,9 @@
 package com.yjhmelody.fp.ch7
 
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.Executors
 
 object Par {
-  def main(args: Array[String]): Unit = {
-    val es = new ExecutorService
-    println(sortPar(unit(List(10, 7, 8, 1, 2, 3, 4, 5)))(es).get)
-  }
-
   def sortPar(pa: Par[List[Int]]): Par[List[Int]] = map(pa)(_.sorted)
-
 
   type Par[A] = ExecutorService => Future[A]
 
