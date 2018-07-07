@@ -1,7 +1,6 @@
 package com.yjhmelody.fp.ch5
 
 case object Empty extends Stream[Nothing]
-
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
 
 object Stream {
@@ -100,5 +99,4 @@ sealed trait Stream[+A] {
   // 5.7
   def map[B](f: A => B): Stream[B] =
     foldRight(empty[B])((a, acc) => cons(f(a), acc))
-
 }

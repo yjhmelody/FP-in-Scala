@@ -2,10 +2,9 @@ package com.yjhmelody.fp.ch4
 
 
 case class MySome[+A](get: A) extends MyOption[A]
-
 case object MyNone extends MyOption[Nothing]
 
-trait MyOption[+A] {
+sealed trait MyOption[+A] {
   def flatMap2[B](f: A => MyOption[B]): MyOption[B] =
     map(f) getOrElse MyNone
 
@@ -44,6 +43,7 @@ trait MyOption[+A] {
 }
 
 object MyOption {
+
   def main(args: Array[String]): Unit = {
     val xs1: MyOption[Int] = MySome(1)
     val xs2: MyOption[Int] = MyNone
@@ -155,10 +155,9 @@ object MyOption {
 
 
 case class MyLeft[+E](value: E) extends MyEither[E, Nothing]
-
 case class MyRight[+A](value: A) extends MyEither[Nothing, A]
 
-trait MyEither[+E, +A] {
+sealed trait MyEither[+E, +A] {
   // 4.6
   def map[B](f: A => B): MyEither[E, B] = this match {
     case MyLeft(e) => MyLeft(e)

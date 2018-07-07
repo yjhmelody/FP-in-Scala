@@ -118,19 +118,19 @@ class Ch3Suite extends FunSuite {
     assert(MyList.filterViaFlatMap(ex4)(x => x != 4) == MyList(1, 2, 3, 5))
   }
 
-  test("3.22") {
+  test("plus 3.22") {
     assert(MyList.plus(ex4, ex4)(_ + _) == MyList(2, 4, 6, 8, 10))
   }
 
-  test("3.23") {
+  test("zipWith 3.23") {
     assert(MyList.zipWith(ex4, ex4)(_ * _) == MyList(1, 4, 9, 16, 25))
   }
 
-  test("3.24") {
+  test("hasSubsequence 3.24") {
     assert(MyList.hasSubsequence(MyList(1, 2, 3), MyList(1, 2)))
   }
 
-  test("3.25-3.29") {
+  test("Tree 3.25-3.29") {
     val tree = Branch(
       Branch(
         Leaf(1),

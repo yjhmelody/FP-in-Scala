@@ -2,9 +2,7 @@ package com.yjhmelody.fp.ch3
 
 
 sealed trait MyList[+A]
-
 case object MyNil extends MyList[Nothing]
-
 case class Cons[+A](head: A, tail: MyList[A]) extends MyList[A]
 
 object MyList {
@@ -199,7 +197,6 @@ object MyList {
 
   // 3.20
   // This could also be implemented directly using `foldRight`.
-  // mine
   def flatMap[A, B](xs: MyList[A])(f: A => MyList[B]): MyList[B] = xs match {
     case MyNil => MyNil
     case Cons(x, xs) => append(f(x), flatMap(xs)(f))
@@ -253,11 +250,8 @@ object MyList {
 }
 
 
-// Tree
 sealed trait Tree[+A]
-
 case class Leaf[A](value: A) extends Tree[A]
-
 case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
 
 object Tree {
